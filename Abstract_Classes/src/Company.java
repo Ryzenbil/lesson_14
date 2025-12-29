@@ -2,8 +2,8 @@ import java.util.*;
 
 public class Company{
 
-    public double income = 0;
-    protected ArrayList<Employee> employeesList = new ArrayList<>();
+    double income = 0;
+    ArrayList<Employee> employeesList = new ArrayList<>();
 
     private List<Integer> getSalaryStaff(int count, Comparator<Integer> comparator) {
         if (count <= 0) {
@@ -39,20 +39,31 @@ public class Company{
 
     public void hire (Employee employee){
         employeesList.add(employee);
-        incomeCount(employee.getIncomeForCompany());
+
+        if (employee instanceof Manager) {
+            double inc = ((Manager) employee).getIncomeForCompany();
+            incomeCount(inc);
+        }
     }
 
     public void hireAll(Collection<Employee> employees) {
         employeesList.addAll(employees);
         for (Employee employee : employees) {
-            incomeCount(employee.getIncomeForCompany());
+            if (employee instanceof Manager) {
+                double inc = ((Manager) employee).getIncomeForCompany();
+                incomeCount(inc);
+            }
         }
     }
 
     public void fire(Employee employee){
         if(employeesList.contains(employee)){
-            fireIncomeCount(employee.getIncomeForCompany());
             employeesList.remove(employee);
+
+            if(employee instanceof Manager){
+                double inc = ((Manager) employee).getIncomeForCompany();
+                fireIncomeCount(inc);
+            }
         } else {
             System.out.println("Employee not found.\n");
         }

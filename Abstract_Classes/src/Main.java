@@ -21,6 +21,7 @@ public class Main {
             TopManager teamLead = new TopManager(company);
             company.hire(teamLead);
         }
+
         company.getTopSalaryStaff(15);
         company.getLowestSalaryStaff(50);
         System.out.println(company.employeesList.size());
@@ -30,9 +31,7 @@ public class Main {
         for (int i = 0; i < half; i++) {
             company.fire(company.employeesList.getFirst());
         }
-
         System.out.println(company.employeesList.size());
-
 
         company.getTopSalaryStaff(15);
         company.getLowestSalaryStaff(50);

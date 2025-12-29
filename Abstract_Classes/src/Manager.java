@@ -1,18 +1,19 @@
 import java.util.Random;
 
 public class Manager implements Employee{
-    Random rand = new Random();
-
     private final double fixedSalary = 100000;
-    private final double incomeForCompany = rand.nextInt(115000, 140000);
-    double totalSalary = fixedSalary + incomeForCompany * 0.05;
+    private final double incomeForCompany;
 
-    @Override
-    public double getMonthSalary() {
-        return totalSalary;
+    public Manager(){
+        Random rand = new Random();
+        incomeForCompany = rand.nextInt(115000, 140000);
     }
 
     @Override
+    public double getMonthSalary() {
+        return fixedSalary + incomeForCompany * 0.05;
+    }
+
     public double getIncomeForCompany() {
         return incomeForCompany;
     }
